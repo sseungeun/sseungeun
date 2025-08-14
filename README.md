@@ -13,6 +13,3 @@
   <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot"/>
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android"/>
 </p>
-
-### 🏅 TopLangs
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sseungeun&layout=compact)
