@@ -3,464 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이승은 | Backend & Android Developer</title>
-    <!-- 폰트 및 아이콘 로드 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+    <title>Creative Developer Portfolio</title>
+    <!-- Google Fonts: Inter (Premium tech look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS Variables & Reset (Black & Green Theme) --- */
+        /* --- Design Tokens & Base --- */
         :root {
-            --primary: #00DC82; /* Vivid Green */
-            --primary-hover: #00b368;
-            --bg-main: #0a0a0a; /* Deep Black */
-            --bg-card: #171717; /* Dark Grey for Cards */
-            --text-main: #ffffff;
-            --text-sub: #a3a3a3;
-            --border-color: #333333;
-            --transition: all 0.3s ease;
+            --bg-light: #f9f9fb;
+            --text-main: #1d1d1f;
+            --text-dim: #86868b;
+            --accent-yellow: #ffeb3b;
+            --accent-green: #00e676;
+            --accent-red: #ff5252;
+            --border-color: rgba(0,0,0,0.06);
+            --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-light);
             color: var(--text-main);
-            background-color: var(--bg-main);
-            line-height: 1.6;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+        .section { padding: 160px 0; }
+        .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; }
 
-        /* --- Animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* --- Components --- */
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04; pointer-events: none; z-index: 9999;
         }
 
-        /* --- Header / Navigation --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+            background: var(--text-main); z-index: 10001;
         }
 
         nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; align-items: center; z-index: 1000;
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-weight: 800; letter-spacing: -1px; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; margin-left: 30px; transition: var(--transition-smooth); }
+        .nav-links a:hover { color: var(--text-main); }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text-sub);
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary);
-        }
-
-        .menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-main);
-        }
-
-        /* --- Hero Section --- */
-        #home {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle at 50% 50%, #112d20 0%, var(--bg-main) 70%);
-            padding: 0 2rem;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero-content .highlight {
-            color: var(--primary);
-            text-shadow: 0 0 30px rgba(0, 220, 130, 0.4);
-        }
+        /* --- Hero --- */
+        .hero { height: 100vh; display: flex; align-items: center; }
+        .hero-title { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 30px; }
+        .accent-text { color: var(--text-dim); transition: var(--transition-smooth); }
+        .hero-title:hover .accent-text { color: var(--text-main); text-decoration: underline; text-decoration-color: var(--accent-yellow); }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-dim); max-width: 650px; margin-bottom: 40px; }
         
-        .hero-content p {
-            font-size: clamp(1rem, 3vw, 1.4rem);
-            color: var(--text-sub);
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            word-break: keep-all;
-        }
+        .badge { display: inline-block; padding: 6px 14px; background: #eee; border-radius: 100px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; }
 
-        .cta-btn {
-            padding: 1.2rem 3rem;
-            background-color: var(--primary);
-            color: #000;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 20px rgba(0, 220, 130, 0.2);
-        }
-
-        .cta-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 220, 130, 0.4);
-        }
-
-        /* --- Section Common --- */
-        section {
-            padding: 8rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 5rem;
-            font-weight: 700;
-        }
-
-        .section-title span {
-            border-bottom: 4px solid var(--primary);
-            padding-bottom: 10px;
-        }
-
-        /* --- About Section --- */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            color: var(--text-sub);
-            font-size: 1.1rem;
-        }
-
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .info-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid var(--border-color);
-        }
-
-        .info-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- Project Section --- */
+        /* --- Project Cards --- */
         .project-card {
-            background: var(--bg-card);
-            border-radius: 2rem;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            margin-bottom: 5rem;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px;
+            margin-bottom: 120px; padding: 50px; border-radius: 32px;
+            background: white; border: 1px solid var(--border-color);
+            transition: var(--transition-smooth); position: relative; overflow: hidden;
+        }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 40px 80px rgba(0,0,0,0.06); }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%;
+            background: var(--card-accent, #ddd); transition: var(--transition-smooth);
         }
 
-        .project-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
-        }
-
-        .project-image {
-            background: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 450px;
-            position: relative;
-            overflow: hidden;
-            border-right: 1px solid var(--border-color);
-        }
+        .project-name { font-size: 2.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.02em; }
+        .project-desc { color: var(--text-dim); margin-bottom: 30px; font-size: 1.15rem; }
+        .project-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+        .project-meta span { padding: 6px 14px; background: #f0f0f2; border-radius: 8px; font-size: 0.8rem; font-weight: 600; }
         
-        .mockup {
-            width: 80%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            background: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-weight: bold;
-            font-size: 1.2rem;
-            aspect-ratio: 16/9;
-            border: 1px solid #444;
+        .project-decision {
+            font-size: 0.95rem; padding: 24px; background: #fafafa;
+            border-radius: 16px; border-left: 4px solid var(--card-accent, #eee);
         }
 
-        .project-content {
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .project-visual {
+            background: #f4f4f6; border-radius: 20px; min-height: 350px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; color: #ddd; font-size: 2rem;
+            position: relative; overflow: hidden;
         }
 
-        .tag {
-            background: rgba(0, 220, 130, 0.1);
-            color: var(--primary);
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            border: 1px solid rgba(0, 220, 130, 0.2);
-            display: inline-block;
-            text-transform: uppercase;
-        }
+        /* --- Reveal & Interactive --- */
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: var(--transition-smooth); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
 
-        .project-content h3 {
-            font-size: 2.2rem;
-            margin: 1.5rem 0;
-            color: var(--text-main);
+        .contact-box {
+            background: var(--text-main); color: white; padding: 120px 60px;
+            border-radius: 48px; text-align: center;
         }
+        .contact-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 40px; }
+        .btn {
+            display: inline-block; padding: 18px 45px; background: white; color: black;
+            text-decoration: none; border-radius: 100px; font-weight: 600;
+            margin: 10px; transition: var(--transition-smooth);
+        }
+        .btn:hover { background: var(--accent-yellow); transform: scale(1.05); }
 
-        .feature-list li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            color: var(--text-sub);
-            font-size: 1rem;
-        }
-
-        .feature-list li i {
-            color: var(--primary);
-            margin-top: 6px;
-        }
-
-        .btn-outline {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            color: var(--primary);
-            font-weight: 700;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: #000;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: #000;
-            border-top: 1px solid var(--border-color);
-            padding: 8rem 2rem;
-            text-align: center;
-        }
-
-        .contact-item {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            color: var(--text-sub);
-        }
-        
-        .contact-item i {
-            color: var(--primary);
-            margin-right: 12px;
-            width: 25px;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .about-container, .project-card { grid-template-columns: 1fr; }
-            .project-image { min-height: 300px; border-right: none; border-bottom: 1px solid var(--border-color); }
-            .project-content { padding: 2.5rem; }
+        @media (max-width: 900px) {
+            .grid, .project-card { grid-template-columns: 1fr; }
+            .section { padding: 100px 0; }
         }
     </style>
 </head>
 <body>
+    <div class="noise"></div>
+    <div class="scroll-progress"></div>
 
-    <header>
-        <nav>
-            <div class="logo">LEE.DEV</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="home">
-        <div class="hero-content reveal">
-            <h1>복잡함을 연결로 푸는<br><span class="highlight">엔지니어 이승은입니다.</span></h1>
-            <p>서버의 안정성과 모바일의 직관성을 동시에 고민합니다.<br>단순한 코딩을 넘어, 기술이 사람과 사람 사이의 문제를 해결하는 가치에 집중합니다.</p>
-            <div style="margin-top: 20px;">
-                <a href="#projects" class="cta-btn">포트폴리오 살펴보기</a>
+    <nav>
+        <div class="container nav-inner">
+            <span class="logo">DEVSIGNER.</span>
+            <div class="nav-links">
+                <a href="#about">Story</a>
+                <a href="#projects">Work</a>
+                <a href="#contact">Connect</a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <section id="about">
-        <div class="section-title reveal"><span>About Me</span></div>
-        <div class="about-container">
-            <div class="about-text reveal">
-                <h3>"사용자 지향적 풀스택 마인드셋"</h3>
-                <p>디지털미디어 전공을 기반으로 서비스의 기획 의도와 디자인 철학을 코드에 녹여냅니다.</p>
-                <p>안드로이드 프론트엔드부터 Spring Boot 백엔드까지, 전체 서비스를 유기적으로 연결하는 시스템 설계에 강점이 있습니다. 협업의 언어를 이해하며 함께 성장하는 즐거움을 압니다.</p>
-            </div>
-            <div class="info-cards reveal">
-                <div class="info-card">
-                    <i class="fas fa-terminal"></i>
-                    <h4>Backend</h4>
-                    <p>Robust Architecture</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-code-branch"></i>
-                    <h4>Android</h4>
-                    <p>Intuitive Interaction</p>
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <span class="badge" id="hero-badge">Fullstack Trajectory</span>
+                <h1 class="hero-title" id="hero-title">
+                    I build interfaces<br>
+                    <span class="accent-text">that feel alive.</span>
+                </h1>
+                <p class="hero-subtitle" id="hero-subtitle">
+                    인터페이스의 생동감을 코드로 구현하는 것을 즐깁니다.<br>
+                    디자인 시스템을 이해하는 프론트엔드에서 시작해, 이제는 데이터의 흐름과 AI의 가능성을 결합하는 제품 개발자로 나아갑니다.
+                </p>
+                <div id="status-display" style="font-size: 0.9rem; color: var(--text-dim); font-weight: 600;">
+                    ● <span id="dynamic-text">Always Learning, Always Building.</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects">
-        <div class="section-title reveal"><span>Recent Projects</span></div>
-        
-        <!-- Project 1: MARO (Backend) -->
-        <div class="project-card reveal">
-            <div class="project-image">
-                <div class="mockup">MARO (Backend Focus)</div>
-            </div>
-            <div class="project-content">
-                <div>
-                    <span class="tag">Spring Boot</span>
-                    <span class="tag">JPA</span>
-                    <span class="tag">MySQL</span>
-                    <span class="tag">Global Impact</span>
+        <!-- ABOUT -->
+        <section class="about section" id="about">
+            <div class="container grid">
+                <div class="scroll-reveal">
+                    <span style="font-weight: 800; font-size: 0.9rem;">01 / PHILOSOPHY</span>
+                    <h2 style="font-size: 3rem; margin-top: 20px;">Beyond Pixels.</h2>
                 </div>
-                <h3>MARO (마로) - 다문화가정 접종 솔루션</h3>
-                <p>2025 GDG Solution Challenge. 언어 장벽을 넘어 예방접종 정보를 투명하게 전달하는 서비스입니다.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> <strong>백엔드 총괄:</strong> 안정적인 데이터 흐름을 위한 API 아키텍처 설계</li>
-                    <li><i class="fas fa-check"></i> <strong>스케줄링 로직:</strong> 복잡한 의료 가이드를 자동화하는 알고리즘 구현</li>
-                    <li><i class="fas fa-check"></i> <strong>데이터 모델링:</strong> 확장성을 고려한 관계형 데이터베이스 정규화</li>
-                </ul>
-                <a href="https://github.com/GDG-SWU/2025-MARO-SolutionChallenge.git" target="_blank" class="btn-outline">View on GitHub</a>
-            </div>
-        </div>
-
-        <!-- Project 2: COMMIT (Android) -->
-        <div class="project-card reveal">
-            <div class="project-image">
-                <div class="mockup">COMMIT (Android Focus)</div>
-            </div>
-            <div class="project-content">
-                <div>
-                    <span class="tag">Kotlin</span>
-                    <span class="tag">Android Jetpack</span>
-                    <span class="tag">Retrofit2</span>
-                    <span class="tag">Community</span>
+                <div class="scroll-reveal">
+                    <p style="font-size: 1.4rem; margin-bottom: 40px; font-weight: 400;">
+                        단순히 "구현"하는 것을 넘어 <strong>"왜 이 버튼이 여기에 있어야 하는가"</strong>를 고민합니다. Figma와 코드를 오가며 사용자 흐름을 설계하고, 효율적인 서버 아키텍처와 AI 기술을 제품의 가치로 전환합니다.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div>
+                            <h4 style="margin-bottom: 10px; color: var(--accent-red);">Product Mind</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-dim);">문제 정의부터 우선순위 설정까지, 개발을 아는 기획자의 관점으로 제품을 밀어붙입니다.</p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px; color: var(--accent-green);">Fast Loop</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-dim);">새로운 기술을 학습하고 바로 실험에 적용하여, 실제 작동하는 프로덕트로 검증합니다.</p>
+                        </div>
+                    </div>
                 </div>
-                <h3>COMMIT (커밋) - 안드로이드 앱</h3>
-                <p>UMC 챌린지 프로젝트. 개발자 간의 지식 공유와 기록을 돕는 커뮤니티 플랫폼입니다.</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> <strong>컴포넌트 개발:</strong> 효율적인 UI 재사용을 위한 커스텀 뷰 및 Jetpack 활용</li>
-                    <li><i class="fas fa-check"></i> <strong>비동기 통신:</strong> Retrofit2와 Coroutine을 활용한 실시간 데이터 동기화</li>
-                    <li><i class="fas fa-check"></i> <strong>사용자 경험:</strong> 사용자 피드백을 반영한 매끄러운 화면 전환 및 인터랙션</li>
-                </ul>
-                <a href="https://github.com/umc-commit/commit_frontend.git" target="_blank" class="btn-outline">View on GitHub</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer id="contact">
-        <div class="section-title reveal"><span>Let's Connect</span></div>
-        <div class="contact-info reveal">
-            <div class="contact-item"><i class="fas fa-user-circle"></i> 이승은 (Lee Seungeun)</div>
-            <div class="contact-item"><i class="fas fa-mobile-alt"></i> 010-4071-****</div>
-            <div class="contact-item"><i class="fas fa-envelope-open-text"></i> iseungeun970@gmail.com</div>
+        <!-- PROJECTS -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <div class="scroll-reveal" style="margin-bottom: 80px;">
+                    <span style="font-weight: 800; font-size: 0.9rem;">02 / WORK</span>
+                    <h2 style="font-size: 3rem; margin-top: 20px;">Selected Projects</h2>
+                </div>
+
+                <!-- Project A: Commit -->
+                <article class="project-card scroll-reveal" style="--card-accent: var(--accent-yellow);">
+                    <div class="project-info">
+                        <span class="project-category">Frontend & UX Design</span>
+                        <h3 class="project-name">Commit</h3>
+                        <p class="project-desc">신뢰 기반 커미션 중개 플랫폼. "작가와 사용자의 연결"이라는 핵심 가치를 위해 신청부터 채팅, 마이페이지까지의 모든 UI를 Jetpack Compose와 XML을 혼합하여 완성도 있게 구현했습니다.</p>
+                        <div class="project-meta">
+                            <span>Kotlin</span><span>Jetpack Compose</span><span>Socket.IO</span><span>Firebase</span>
+                        </div>
+                        <div class="project-decision">
+                            <strong>Decision:</strong> 사용자 흐름이 끊기지 않도록 모든 화면 전환과 상태 변화에 부드러운 애니메이션을 적용하여 '서비스의 신뢰도'를 시각적으로 전달했습니다.
+                        </div>
+                    </div>
+                    <div class="project-visual">UI FLOW</div>
+                </article>
+
+                <!-- Project B: MARO -->
+                <article class="project-card scroll-reveal" style="--card-accent: var(--accent-red);">
+                    <div class="project-info">
+                        <span class="project-category">Server & AI Strategy</span>
+                        <h3 class="project-name">MARO</h3>
+                        <h4 style="font-size: 0.9rem; margin-bottom: 15px; color: var(--text-dim);">Solution Challenge Project</h4>
+                        <p class="project-desc">다문화 가정 예방접종 관리 앱. 복잡한 공공데이터 정제와 다국어 번역, Gemini Vision을 활용한 증명서 분석 등 기술적 복잡도를 해결하여 실질적인 언어 장벽 문제를 해소했습니다.</p>
+                        <div class="project-meta">
+                            <span>FastAPI</span><span>Google Places API</span><span>Levenshtein Matcher</span><span>Multimodal AI</span>
+                        </div>
+                        <div class="project-decision">
+                            <strong>Decision:</strong> 서버 아키텍처를 AI 응답 생성과 일반 로직으로 분리하여 확장성을 확보하고, 캐싱을 통해 공공데이터 호출 속도를 최적화했습니다.
+                        </div>
+                    </div>
+                    <div class="project-visual">ARCHITECTURE</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <div class="contact-box scroll-reveal">
+                    <h2 class="contact-title">Let's build something<br>that moves.</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.8;">즐겁게 만들고, 빠르게 배우며, 제품으로 증명합니다.</p>
+                    <div class="contact-links">
+                        <a href="mailto:your-email@example.com" class="btn">Email</a>
+                        <a href="https://github.com/your-id" class="btn" style="background: var(--accent-yellow);">GitHub</a>
+                        <a href="#" class="btn">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 60px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-dim); font-size: 0.9rem;">
+        <div class="container">
+            <p>&copy; 2024 DEVSIGNER. Crafted with Passion.</p>
         </div>
-        <div style="margin-top: 4rem; color: #333; font-size: 0.9rem;">© 2024. Lee Seungeun Portfolio. Built with Passion.</div>
     </footer>
 
     <script>
-        // Intersection Observer for scroll animation
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, observerOptions);
+        /**
+         * STATIC SITE LOGIC
+         * 배포 시 서버 없이도 작동하도록 설계됨
+         */
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', () => {
+            initReveal();
+            initHeroAnim();
+            initProjectInteractions();
+            initScrollProgress();
+            initDynamicText();
+        });
+
+        // 1. Scroll Reveal (섹션 진입 시 애니메이션)
+        function initReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        }
+
+        // 2. Hero Section Entrance (Web Animations API)
+        function initHeroAnim() {
+            const elements = [
+                { id: 'hero-badge', delay: 100 },
+                { id: 'hero-title', delay: 300 },
+                { id: 'hero-subtitle', delay: 500 },
+                { id: 'status-display', delay: 700 }
+            ];
+
+            elements.forEach(item => {
+                const el = document.getElementById(item.id);
+                el.animate([
+                    { opacity: 0, transform: 'translateY(30px)' },
+                    { opacity: 1, transform: 'translateY(0)' }
+                ], {
+                    duration: 1000,
+                    delay: item.delay,
+                    easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
+                    fill: 'forwards'
+                });
+            });
+        }
+
+        // 3. Project Card Mouse Interaction
+        function initProjectInteractions() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // 마우스 위치에 따라 미세한 하이라이트 부여
+                    card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,1) 0%, rgba(252,252,252,1) 100%)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = 'white';
+                });
+            });
+        }
+
+        // 4. Scroll Progress Bar
+        function initScrollProgress() {
+            const bar = document.querySelector('.scroll-progress');
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                bar.style.width = scrolled + "%";
+            });
+        }
+
+        // 5. Dynamic Typing Text Simulation (서버 API 대신 로컬 로직)
+        function initDynamicText() {
+            const target = document.getElementById('dynamic-text');
+            const messages = [
+                "Exploring Multimodal AI Environments.",
+                "Optimizing Backend Scalability.",
+                "Crafting Smooth User Experiences.",
+                "Designing Systems for People."
+            ];
+            let msgIndex = 0;
+            
+            async function type(text) {
+                target.innerText = '';
+                for (let char of text) {
+                    target.innerText += char;
+                    await new Promise(r => setTimeout(r, 40));
+                }
+                await new Promise(r => setTimeout(r, 2000));
+                deleteText();
+            }
+
+            async function deleteText() {
+                let text = target.innerText;
+                while (text.length > 0) {
+                    text = text.slice(0, -1);
+                    target.innerText = text;
+                    await new Promise(r => setTimeout(r, 20));
+                }
+                msgIndex = (msgIndex + 1) % messages.length;
+                type(messages[msgIndex]);
+            }
+
+            type(messages[0]);
+        }
     </script>
 </body>
 </html>
