@@ -31,3 +31,8 @@
   <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="GCP"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
 </p>
+<br></br>
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sseungeun&layout=compact&theme=radical&langs_count=6" height="165" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=sseungeun&theme=radical" height="165" />
+</p>
