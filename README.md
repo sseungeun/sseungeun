@@ -1,3 +1,31 @@
+# Hi there, I'm Seungeun Lee 👋
+
+Backend & Cloud-focused Software Engineering Student.  
+Passionate about building scalable backend architectures and integrating AI services into production systems.
+
+---
+
+## 🏆 Projects
+
+### Server / Backend
+- **[SimSpeak](https://github.com/yojing623/SimSpeak)** — AI-driven Language Learning Simulation `FastAPI` `Azure OpenAI`
+- **[MeoriBingo](https://github.com/MeoriBingo/MeoriBingo_Backend)** — Habit Formation Service `FastAPI` `Azure MySQL`
+- **[e-gleEye](https://github.com/sseungeun/e-gleEye)** — Real-time Fire Detection & Alert System `Azure` `Cloud Vision`
+
+### Android / Full-stack
+- **[MARO](https://github.com/GDG-SWU/2025-MARO-SolutionChallenge)** (GDG Solution Challenge) — `Kotlin` `Spring Boot`
+- **[Commit](https://github.com/umc-commit/commit_frontend)** (UMC) — Credit-based Commission Platform `Kotlin`
+
+---
+
+## 🤝 Experience
+
+- **Microsoft AI School** (9th Cohort) | *Backend & Cloud Architecture* (2025.12 - 2026.06)
+- **GDG SWU** (Google Developer Groups) | *Core Member / Challenger* (2025 - Present)
+- **UMC** (University MakeUs Challenge, 9th Cohort) | *Android / Backend Challenger* (2025)
+
+---
+
 ## 🛠 Tech Stack
 
 ### 💻 Language
@@ -16,6 +44,13 @@
   <img src="https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white" alt="Unity"/>
 </p>
 
+### ☁️ Cloud & Infrastructure
+<p align="left">
+  <img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure"/>
+  <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="GCP"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+</p>
+
 ### 🤖 AI, Data & Database
 <p align="left">
   <img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI"/>
@@ -25,14 +60,13 @@
   <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter Notebook"/>
 </p>
 
-### ☁️ Cloud & Infrastructure
-<p align="left">
-  <img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure"/>
-  <img src="https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="GCP"/>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-</p>
+---
 
-<br>
+## 📜 Certifications
+
+- **Microsoft Certified: Azure AI Fundamentals** (2026.05)
+
+---
 
 <p align="left">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=sseungeun&theme=radical&v=2" height="165" />
