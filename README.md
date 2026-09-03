@@ -23,7 +23,7 @@ Passionate about building scalable backend architectures and integrating AI serv
 ## 🤝 Experience
 
 - **Microsoft AI School** (9th Cohort) | *Backend & Cloud Architecture* (2025.12 - 2026.06)
-- **GDG SWU** (Google Developer Groups) | *Core Member / Challenger* (2025 - Present)
+- **GDG SWU** (Google Developer Groups) | *Core Member / Challenger* (2025)
 - **UMC** (University MakeUs Challenge, 9th Cohort) | *Android / Backend Challenger* (2025)
 
 ---
