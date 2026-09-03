@@ -8,13 +8,15 @@ Passionate about building scalable backend architectures and integrating AI serv
 ## 🏆 Projects
 
 ### Server / Backend
-- **[SimSpeak](https://github.com/yojing623/SimSpeak)** — AI-driven Language Learning Simulation `FastAPI` `Azure OpenAI`
-- **[MeoriBingo](https://github.com/MeoriBingo/MeoriBingo_Backend)** — Habit Formation Service `FastAPI` `Azure MySQL`
+- **[MARO Backend](https://github.com/sseungeun/GDGMaro_server)** (GDG Solution Challenge) — Sustainable Marine Waste Recycling Platform `Backend` `Java` `Spring Boot`  
+  *(Team Project Repo: [2025-MARO-SolutionChallenge](https://github.com/GDG-SWU/2025-MARO-SolutionChallenge))*
+- **[SimSpeak](https://github.com/3rd-project-ms/3rdproject_Backend)** (Microsoft AI School) — AI-driven Language Learning Simulation `Backend` `Java` `Spring Boot` `FastAPI` `Azure OpenAI`  
+  *(Main Repo: [SimSpeak](https://github.com/yojing623/SimSpeak) / Backend Repo: [3rdproject_Backend](https://github.com/3rd-project-ms/3rdproject_Backend))*
+- **[MeoriBingo](https://github.com/MeoriBingo/MeoriBingo_Backend)** — Habit Formation Service `Backend` `FastAPI` `Azure MySQL`
 - **[e-gleEye](https://github.com/sseungeun/e-gleEye)** — Real-time Fire Detection & Alert System `Azure` `Cloud Vision`
 
-### Android / Full-stack
-- **[MARO](https://github.com/GDG-SWU/2025-MARO-SolutionChallenge)** (GDG Solution Challenge) — `Kotlin` `Spring Boot`
-- **[Commit](https://github.com/umc-commit/commit_frontend)** (UMC) — Credit-based Commission Platform `Kotlin`
+### Android / Client
+- **[Commit](https://github.com/umc-commit/commit_frontend)** (UMC) — Credit-based Commission Platform `Kotlin` `Android`
 
 ---
 
