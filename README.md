@@ -35,6 +35,5 @@
 <br>
 
 <p align="left">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/username=sseungeun&layout=compact&theme=radical&langs_count=6&hide=jupyter%20notebook&v=2" height="165" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=sseungeun&theme=radical&v=2" height="165" />
 </p>
